@@ -12,15 +12,17 @@ class login_gui:
         self.Label.pack()
         self.Entry = Entry(self.window)
         self.Entry.pack()
-        def Get_username():
+        self.btn = Button(self.window, text='Submit', command=Get_username)
+        self.btn.pack()
+        self.window.mainloop()
+
+    def Get_username():
             username = self.Entry.get()
             print(username)
             self.Label.config(text="what is your passsowrd")
             self.btn.config(command=Get_password)
-        self.btn = Button(self.window, text='Submit', command=Get_username)
-        self.btn.pack()
-        def Get_password():
+    
+    def Get_password():
             self.window.destroy()
             login = True
-        self.window.mainloop()
 
