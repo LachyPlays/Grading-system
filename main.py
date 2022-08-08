@@ -1,4 +1,4 @@
-import database
+from student_gui import student_gui
 
-student = database.student("Jack")
-student.print_data()
+sgui = student_gui()
+sgui.open_window()
