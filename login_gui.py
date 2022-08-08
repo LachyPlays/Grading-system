@@ -6,6 +6,8 @@ from tkinter import *
 class login_gui:
     def __init__(self):
         self.window = Tk()
+
+    def open_window(self):
         self.Label = Label(self.window, text="what is your username")
         self.Label.pack()
         self.Entry = Entry(self.window)
@@ -18,7 +20,7 @@ class login_gui:
         self.btn = Button(self.window, text='Submit', command=Get_username)
         self.btn.pack()
         def Get_password():
-            pass
+            self.window.destroy()
+            login = True
         self.window.mainloop()
 
-p1 = login_gui()
