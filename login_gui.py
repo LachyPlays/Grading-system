@@ -21,6 +21,7 @@ class login_gui:
             self.btn.config(command=self.Get_password)
     
     def Get_password(self):
+            password = self.Entry.get()
             self.window.destroy()
             login = True
 
