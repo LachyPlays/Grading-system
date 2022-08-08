@@ -1,4 +1,3 @@
-from ast import Try
 from operator import imod
 from student_gui import student_gui
 from login_gui import *
