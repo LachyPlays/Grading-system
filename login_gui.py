@@ -1,5 +1,3 @@
-from cProfile import label
-from curses import window
 import tkinter
 from tkinter import *
 
