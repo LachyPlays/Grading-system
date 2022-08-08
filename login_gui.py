@@ -4,6 +4,7 @@ from tkinter import *
 class login_gui:
     def __init__(self):
         self.window = Tk()
+        self.login = False
 
     def open_window(self):
         self.Label = Label(self.window, text="what is your username")
