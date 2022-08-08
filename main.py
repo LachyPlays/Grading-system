@@ -4,7 +4,7 @@ from login_gui import *
 lgui = login_gui()
 lgui.open_window()
 
-if login_gui.login == True:
+if lgui.login == True:
     sgui = student_gui()
     sgui.open_window()
 
