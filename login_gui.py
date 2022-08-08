@@ -20,5 +20,3 @@ class login_gui:
         def Get_password():
             pass
         self.window.mainloop()
-
-p1 = login_gui()
