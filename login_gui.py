@@ -23,4 +23,5 @@ class login_gui:
             self.window.destroy()
             login = True
         self.window.mainloop()
+<<<<<<< HEAD
 
