@@ -1,8 +1,8 @@
-from ast import Delete
 import json
-from queue import Empty
-import tkinter
+import base64
 from tkinter import *
+from tkinter import messagebox
+from cryptography.fernet import Fernet
 
 class login_gui:
     def __init__(self):
@@ -28,9 +28,26 @@ class login_gui:
             self.btn.config(command=self.Get_password)
     
     def Get_password(self):
-            password = self.Entry.get()
-            if self.tdata[self.username]["Password"] == password:
+            in_password = self.Entry.get()
+            key = Fernet(base64.urlsafe_b64encode(str.encode(in_password.zfill(32))))
+            dec_password = str
+
+            try:
+                dec_password = key.decrypt(self.tdata[self.username]["Password"].encode()).decode()
+            except:
                 self.window.destroy()
-                self.login = True
+                messagebox.showerror("Login error", "Invalid username and or password")
+
+            try:
+                if dec_password == in_password:
+                    self.window.destroy()
+                    self.login = True
+                else:
+                    self.window.destroy()
+                    messagebox.showerror("Login error", "Invalid username and or password")
+            except:
+                self.window.destroy()
+                messagebox.showerror("Login error", "Invalid username and or password")
+
             delattr(self, "username")
 
