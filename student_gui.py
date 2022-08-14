@@ -8,7 +8,6 @@ class student_gui:
         self.students = dict
         with open ("students.json") as file:
             self.students = json.loads(file.read())
-    
 
     def open_window(self):
         studentlist = Listbox(self.ui)
@@ -17,6 +16,7 @@ class student_gui:
             studentlist.insert(index,student)
             index = index + 1
 
+        studentlist.bind("<<ListboxSelect>>", lambda self : print(studentlist.get(studentlist.curselection())))
         studentlist.pack()
         self.ui.geometry("400x400")
         self.ui.mainloop()
