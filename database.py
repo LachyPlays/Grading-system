@@ -1,6 +1,5 @@
 import json
 import string
-
 # Load a person from a json file
 def load_person(name, dbase):
     # Ensure that the database is a json
@@ -26,3 +25,4 @@ class student:
         data["age"] = self.age
         data["grades"] = self.grades
         return data
+    
