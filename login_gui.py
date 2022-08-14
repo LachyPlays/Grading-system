@@ -1,8 +1,6 @@
 import json
 import base64
 from tkinter import *
-from tkinter import messagebox
-from cryptography.fernet import Fernet
 
 class login_gui:
     def __init__(self):
@@ -21,12 +19,10 @@ class login_gui:
         self.window.mainloop()
 
     def Get_username(self):
-            self.username = self.Entry.get()
-            print(self.username)
-            self.Entry.delete(0, END)
+            username = self.Entry.get()
+            print(username)
             self.Label.config(text="what is your passsowrd")
             self.btn.config(command=self.Get_password)
-    
     def Get_password(self):
             in_password = self.Entry.get()
             key = Fernet(base64.urlsafe_b64encode(str.encode(in_password.zfill(32))))
