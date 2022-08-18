@@ -33,13 +33,13 @@ class login_gui:
             key = Fernet(base64.urlsafe_b64encode(str.encode(in_password.zfill(32))))
             dec_password = str
 
-            #try:
-            print(self.tdata[self.username]["Password"])
-            dec_password = key.decrypt(self.tdata[self.username]["Password"].encode()).decode()
-            print(dec_password)
-            #except:
-                #self.window.destroy()
-                #messagebox.showerror("Login error", "Invalid username and or password")
+            try:
+                print(self.tdata[self.username]["Password"])
+                dec_password = key.decrypt(self.tdata[self.username]["Password"].encode()).decode()
+                print(dec_password)
+            except:
+                self.window.destroy()
+                messagebox.showerror("Login error", "Invalid username and or password")
 
             try:
                 if dec_password == in_password:
