@@ -1,5 +1,6 @@
 from cryptography.fernet import Fernet
 import base64
+import json
 
 inp = input("Enter a password: ")
 t = Fernet(base64.urlsafe_b64encode(str.encode(inp.zfill(32))))
