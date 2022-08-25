@@ -5,16 +5,16 @@ import first_login
 
 
 
-if first_login.run() == True:
-    hgui = make_hash.hash_gui()
-    hgui.open_window()
+#if first_login.run() == True:
+#    hgui = make_hash.hash_gui()
+#    hgui.open_window()
 
-lgui = login_gui()
-lgui.open_window()
+#lgui = login_gui()
+#lgui.open_window()
 
-if lgui.login == True:
-    sgui = student_gui()
-    sgui.open_window()
+#if lgui.login == True:
+sgui = student_gui()
+sgui.open_window()
 
 
 

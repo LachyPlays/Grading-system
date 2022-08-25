@@ -36,7 +36,7 @@ class login_gui:
                 dec_password = key.decrypt(self.tdata[self.username]["Password"].encode()).decode()
             except:
                 self.window.destroy()
-                messagebox.showerror("Login error", "Invalid username and or password")
+                messagebox.showerror("Decrypt error", "Invalid username and or password")
 
             try:
                 if dec_password == in_password:
