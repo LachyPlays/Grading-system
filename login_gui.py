@@ -22,7 +22,6 @@ class login_gui:
 
     def Get_username(self):
             self.username = self.Entry.get()
-            print(self.username)
             self.Label.config(text="what is your passsowrd")
             self.Entry.delete(0,END)
             self.Entry.insert(0,"")
@@ -34,9 +33,7 @@ class login_gui:
             dec_password = str
 
             try:
-                print(self.tdata[self.username]["Password"])
                 dec_password = key.decrypt(self.tdata[self.username]["Password"].encode()).decode()
-                print(dec_password)
             except:
                 self.window.destroy()
                 messagebox.showerror("Login error", "Invalid username and or password")
