@@ -1,7 +1,7 @@
 from ctypes import alignment
 from tkinter import *
 import json
-from database import student
+#from database import student
 
 class student_gui:
     def __init__(self):
