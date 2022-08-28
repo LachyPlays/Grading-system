@@ -10,6 +10,7 @@ class hash_gui():
         self.window = Tk()
         self.button = Button(self.window, text="Submit", command=self.Get_Text)
         self.entry = Entry(self.window, text="Enter a password:")
+        self.label = Label(self.window, text="make a new password")
 
     def Get_Text(self):
         password = self.entry.get()
@@ -19,6 +20,7 @@ class hash_gui():
         self.window.destroy()
 
     def open_window(self):
+        self.label.pack()
         self.entry.pack()
         self.button.pack()
         self.window.mainloop()
