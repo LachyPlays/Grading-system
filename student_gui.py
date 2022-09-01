@@ -27,7 +27,6 @@ class student_gui:
         self.studentlist = Listbox(self.ui)
         self.studentData = Label(self.ui, text="No student selected", anchor='s')
         self.sortLabel = Label(self.ui, text="Sort by:", anchor='sw')
-
         index = int(0)
         for student in list(self.students.keys()):
             self.studentlist.insert(index,student)
