@@ -1,14 +1,16 @@
 from logging import error
 import os
+import make_hash
 
 def run():
-    with open('main.txt', "rt") as file:
+    with open('main.txt', "r") as file:
         text = file.read()
-
         if text == 'False':
             return  False
         if text == 'True':
-            with open('main.txt', 'wt') as file:
+            hgui = make_hash.hash_gui()
+            hgui.open_window()
+            with open('main.txt', 'w') as file:
                 file.write("False")
             return True
         else:
