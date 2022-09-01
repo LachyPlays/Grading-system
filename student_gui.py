@@ -21,12 +21,11 @@ class student_gui:
         if math_grade >= 12:
             new_text = " is recommended for math methods"
             
-        self.sortLabel.config(text=self.studentlist.get(self.studentlist.curselection()) + new_text)
+        self.studentData.config(text=self.studentlist.get(self.studentlist.curselection()) + new_text)
 
     def open_window(self):
         self.studentlist = Listbox(self.ui)
         self.studentData = Label(self.ui, text="No student selected", anchor='s')
-        self.sortLabel = Label(self.ui, text="Sort by:", anchor='sw')
 
         index = int(0)
         for student in list(self.students.keys()):
@@ -37,6 +36,5 @@ class student_gui:
         self.studentlist.bind("<<ListboxSelect>>", self.update_list)
         self.studentlist.pack()
         self.studentData.pack()
-        self.sortLabel.pack()
         self.ui.geometry("400x400")
         self.ui.mainloop()
