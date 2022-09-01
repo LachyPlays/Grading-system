@@ -1,3 +1,1 @@
-{"Jake":{"age":15, "grades":{"math" : "F"}},
-"Shrikar":{"age":16, "grades":{"math" : "A+"}},
-"Lachlan":{"age":16, "grades":{"math" : "B"}}}
+{"Lachlan": {"age": 0, "grades": {"english": "C", "math": "C"}}, "Shrikar": {"age": 0, "grades": {"english": "C", "math": "C"}}}
