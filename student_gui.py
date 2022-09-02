@@ -35,8 +35,11 @@ class student_gui:
         self.studentlist.insert(self.studentlist.size(), newStudentName)
 
     def delStudent(self):
-        del self.students[self.studentlist.get(self.studentlist.curselection())]
-        self.update_list()
+        try:
+            del self.students[self.studentlist.get(self.studentlist.curselection())]
+            self.update_list()
+        except:
+            pass
 
     def open_window(self):
         self.studentlist = Listbox(self.ui)
