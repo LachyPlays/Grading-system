@@ -1,3 +1,4 @@
+from curses import window
 from tkinter import *
 import json
 from tkinter import simpledialog
@@ -30,15 +31,19 @@ class student_gui:
     def addStudent(self):
         newStudentName = simpledialog.askstring(title="Add new student",
                                   prompt="What is their name?:")
-        
         self.students[newStudentName] = {"age":0, "grades":{"english":"C", "math":"C"}}
         self.studentlist.insert(self.studentlist.size(), newStudentName)
+
+    def delStudent(self):
+        del self.students[self.studentlist.get(self.studentlist.curselection())]
+        self.update_list()
 
     def open_window(self):
         self.studentlist = Listbox(self.ui)
         self.studentData = Label(self.ui, text="No student selected")
         self.addStudentBtn = Button(self.ui, text='Add student', command=self.addStudent)
         self.nameBox = Entry(self.ui)
+        self.button_del = Button(self.ui, text='Remove students', command=self.delStudent)
 
         index = int(0)
         for student in list(self.students.keys()):
@@ -51,5 +56,6 @@ class student_gui:
         self.studentData.place(x=10, y=180)
         self.addStudentBtn.place(x=10, y=200)
         self.nameBox.pack(side=RIGHT, anchor=NE)
+        self.button_del.place(x=10, y=250)
         self.ui.geometry("400x400")
         self.ui.mainloop()
