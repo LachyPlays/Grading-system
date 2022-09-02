@@ -14,9 +14,17 @@ class student_gui:
         with open("students.json", 'wt') as file:
             file.write(json.dumps(self.students))
 
+    def update_listbox(self):
+        index = int(0)
+        for student in list(self.students.keys()):
+            self.studentlist.insert(index,student)
+            index = index + 1
+
     def update_list(self, evt):
+        student_name = self.studentlist.get(self.studentlist.curselection())
+        
         grade_map = {"F":0, "F+":1, "D-":2, "D":3, "D+":4, "C-":5, "C":6, "C+":7, "B-":8, "B":9, "B+":10, "A-":11, "A":12, "A+":13}
-        math_grade = grade_map.get(self.students[self.studentlist.get(self.studentlist.curselection())]["grades"]["math"])
+        math_grade = grade_map.get(self.students[student_name]["grades"]["math"])
 
         if math_grade <= 8:
             new_text = " is not elegible for math methods"
@@ -25,7 +33,8 @@ class student_gui:
         if math_grade >= 12:
             new_text = " is recommended for math methods"
             
-        self.studentData.config(text=self.studentlist.get(self.studentlist.curselection()) + new_text)
+        self.studentData.config(text=student_name + new_text)
+
 
     def addStudent(self):
         newStudentName = simpledialog.askstring(title="Add new student",
@@ -40,11 +49,6 @@ class student_gui:
         self.addStudentBtn = Button(self.ui, text='Add student', command=self.addStudent)
         self.nameBox = Entry(self.ui)
 
-        index = int(0)
-        for student in list(self.students.keys()):
-            self.studentlist.insert(index,student)
-            index = index + 1
-
         students = self.students
         self.studentlist.bind("<<ListboxSelect>>", self.update_list)
         self.studentlist.pack(side=LEFT, anchor=NW)
@@ -52,4 +56,5 @@ class student_gui:
         self.addStudentBtn.place(x=10, y=200)
         self.nameBox.pack(side=RIGHT, anchor=NE)
         self.ui.geometry("400x400")
+        self.update_listbox()
         self.ui.mainloop()
