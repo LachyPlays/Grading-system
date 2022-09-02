@@ -41,12 +41,12 @@ class student_gui:
         self.studentlist.insert(self.studentlist.size(), newStudentName)
 
     def delStudent(self):
-        try:
+        if self.studentlist.curselection != "":
             del self.students[self.studentlist.get(self.studentlist.curselection())]
-            self.update_list()
-        except:
-            pass
-
+            self.update_listbox()
+            self.studentData.config(text="No students selected")
+    def add_grade():
+        pass
     def open_window(self):
         self.studentlist = Listbox(self.ui)
         self.studentData = Label(self.ui, text="No student selected")

@@ -12,7 +12,6 @@ class find():
         self.window.geometry("500x500")
         
         self.button = Button(self.window, text="Submit")
-        self.entry_ask = Entry(self.window, text="what is the student name")
         self.label = Label(self.window, text="make a new password")
         
 
