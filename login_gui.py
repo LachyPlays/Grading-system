@@ -4,7 +4,6 @@ from tkinter import *
 from tkinter import messagebox
 import tkinter
 from cryptography.fernet import Fernet
-
 class login_gui:
     def __init__(self):
         self.window = Tk()
