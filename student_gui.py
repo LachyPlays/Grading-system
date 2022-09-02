@@ -15,6 +15,12 @@ class student_gui:
         with open("students.json", 'wt') as file:
             file.write(json.dumps(self.students))
 
+    def update_listbox(self):
+        index = int(0)
+        for student in list(self.students.keys()):
+            self.studentlist.insert(index,student)
+            index = index + 1
+
     def update_list(self, evt):
         grade_map = {"F":0, "F+":1, "D-":2, "D":3, "D+":4, "C-":5, "C":6, "C+":7, "B-":8, "B":9, "B+":10, "A-":11, "A":12, "A+":13}
         math_grade = grade_map.get(self.students[self.studentlist.get(self.studentlist.curselection())]["grades"]["math"])
@@ -48,10 +54,7 @@ class student_gui:
         self.nameBox = Entry(self.ui)
         self.button_del = Button(self.ui, text='Remove students', command=self.delStudent)
 
-        index = int(0)
-        for student in list(self.students.keys()):
-            self.studentlist.insert(index,student)
-            index = index + 1
+        self.update_listbox()
 
         students = self.students
         self.studentlist.bind("<<ListboxSelect>>", self.update_list)
