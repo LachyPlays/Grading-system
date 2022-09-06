@@ -22,7 +22,7 @@ class student_gui:
             index = index + 1
 
     def update_list(self, evt):
-        grade_map = {"F":0, "F+":1, "D-":2, "D":3, "D+":4, "C-":5, "C":6, "C+":7, "B-":8, "B":9, "B+":10, "A-":11, "A":12, "A+":13}
+        grade_map = {"F":0, "F+":0.5, "D-":1, "D":1.3, "D+":1.3, "C-":1.7, "C":2, "C+":2.3, "B-":2.7, "B":3.0, "B+":3.3, "A-":3.7, "A":4.0, "A+":4.3}
         math_grade = grade_map.get(self.students[self.studentlist.get(self.studentlist.curselection())]["grades"]["math"])
 
         if math_grade <= 8:
@@ -37,14 +37,17 @@ class student_gui:
     def addStudent(self):
         newStudentName = simpledialog.askstring(title="Add new student",
                                   prompt="What is their name?:")
-        self.students[newStudentName] = {"age":0, "grades":{"english":"C", "math":"C"}}
+        # self.students[newStudentName] = {"age":0, "grades":{"math":"C"}}
+        self.students = {"Name": newStudentName, "age": 0,"grades":{"math":"C"}}
         self.studentlist.insert(self.studentlist.size(), newStudentName)
 
     def delStudent(self):
         if self.studentlist.curselection != "":
             del self.students[self.studentlist.get(self.studentlist.curselection())]
+            self.studentlist.delete(self.studentlist.curselection())
             self.update_listbox()
-            self.studentData.config(text="No students selected")
+
+            #self.studentData.config(text="No students selected")
     def add_grade():
         pass
     def open_window(self):

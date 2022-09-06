@@ -12,13 +12,14 @@ class find():
         self.window.geometry("500x500")
         
         self.button = Button(self.window, text="Submit")
-        self.label = Label(self.window, text="make a new password")
+        self.label = Label(self.window, "what is the student first exam score")
+        self.exam1_entry = Entry(self.window, text="Exam 1")
+        self.exam2_entry = Entry(self.window, text="Exam 2")
         
 
     def open_window(self):
-        self.label.pack()
-        self.entry.pack()
-        self.button.pack()
+        self.exam2_entry.pack()
+        self.exam1_entry.pack()
         self.window.mainloop()
 
 Cal = find()
