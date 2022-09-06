@@ -1,3 +1,4 @@
+from decimal import DivisionByZero
 from tkinter import *
 import json
 from tkinter import simpledialog
@@ -40,8 +41,11 @@ class student_gui:
         avg_grade = float()
         for (test, grade) in results.items():
             avg_grade += float(grade)
-        avg_grade = float(avg_grade / len(results))
-        math_grade = avg_grade
+        try:
+            avg_grade = float(avg_grade / len(results))
+            math_grade = avg_grade
+        except:
+            math_grade = 0
 
         if math_grade <= 0.7:
             new_text = " is not elegible for methods"
@@ -51,7 +55,10 @@ class student_gui:
             new_text = " is recommended for methods"
             
         self.studentData.config(text=self.studentlist.get(self.studentlist.curselection()) + new_text)
-        self.updateInfo(self.studentlist.get(self.studentlist.curselection()), avg_grade, results[str(len(results) - 1)])
+        try:
+            self.updateInfo(self.studentlist.get(self.studentlist.curselection()), avg_grade, results[str(len(results) - 1)])
+        except:
+            self.updateInfo(self.studentlist.get(self.studentlist.curselection()), 0.0, 0.0)
 
     def addStudent(self):
         newStudentName = simpledialog.askstring(title="Add new student",
@@ -61,13 +68,14 @@ class student_gui:
         self.updateJson()
 
     def delStudent(self):
-        if self.studentlist.curselection != "":
+        try:
             del self.students[self.studentlist.get(self.studentlist.curselection())]
-            self.update_listbox()
-            self.studentData.config(text='No student selected')
-            self.updateJson()
         except:
             pass
+        self.update_listbox()
+        self.updateInfo("", 0.0, 0.0)
+        self.studentData.config(text='No student selected')
+        self.updateJson()
 
     def viewTests(self):
         try:
@@ -77,7 +85,6 @@ class student_gui:
         tGui = test_gui(currentStudent)
         tGui.open_window()
         self.students[self.studentlist.get(self.studentlist.curselection())]["results"] = tGui.updatedStudent.to_json()["results"]
-        print(self.students[self.studentlist.get(self.studentlist.curselection())]["results"])
         self.update_list(None)
         self.updateJson()
 
