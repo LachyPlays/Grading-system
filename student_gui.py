@@ -61,7 +61,7 @@ class student_gui:
         self.updateJson()
 
     def delStudent(self):
-        try:
+        if self.studentlist.curselection != "":
             del self.students[self.studentlist.get(self.studentlist.curselection())]
             self.update_listbox()
             self.studentData.config(text='No student selected')
