@@ -8,21 +8,20 @@ def load_person(name, dbase):
             return json.loads(file.read())[name]
 
 class student:
-    def __init__(self, name: string):
+    def __init__(self, name: str):
         jsondata = load_person(name, "students.json")
         self.name = name
         self.age = jsondata["age"]
-        self.grades = jsondata["grades"]
+        self.results = jsondata['results']
 
-    def __init__(self, data: dict):
-        self.name = data["name"]
+    def __call__(self, *,data: dict, name: str):
+        self.name = name
         self.age = data["age"]
-        self.grades = data["grades"]
+        self.results = data["results"]
 
     def to_json(self):
-        data = dict
-        data["name"] = self.name
-        data["age"] = self.age
-        data["grades"] = self.grades
+        data = dict()
+        data["age"] = int(self.age)
+        data["results"] = dict(self.results)
         return data
     
