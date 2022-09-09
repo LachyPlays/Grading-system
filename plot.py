@@ -1,30 +1,44 @@
-from tkinter import *
+import matplotlib.pyplot as plt
+import numpy as np
 import json
+import tkinter 
+from tkinter import * 
+from tkinter import messagebox
 
 
-window = Tk()
+window = tkinter.Tk()
 
-def get_content():
-    with open('students.json') as file:
-        students_dict = json.loads(file.read())
-        if entry.get() == students_dict['Name']:
-            print(students_dict['grades'])
-            students_grades = students_dict['grades']
-            student_grade_letter = students_grades['math']
-            if student_grade_letter == 'C':
-                student_grade_num = f"{90}%"
-                print(student_grade_num)
-            
-        
-
+label = tkinter.Label(window, text="list a students").pack()
+entry = tkinter.Entry(window)
+def sub():
+    text = entry.get()
+    user_data = data[text]
     
+btn = tkinter.Button(window, text="submit", command=sub()).pack()
+
+entry.pack()
 
 
-entry = Entry(window, width= 40)
-entry.pack(pady= 20)
 
 
-button= Button(window, text= "Get Content", command= get_content)
-button.pack(pady=10)
+
+
+data = dict()
+with open('students.json') as file:
+    data = json.dumps(file.read())
+
+
+print(data)
+
+
+
+
 
 window.mainloop()
+
+
+xpoints = np.array([0, 6])
+ypoints = np.array([0, 250])
+
+plt.plot(xpoints, ypoints)
+plt.show()
