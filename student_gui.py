@@ -88,6 +88,7 @@ class student_gui:
         self.update_list(None)
         self.updateJson()
 
+
     def open_window(self):
         self.studentlist = Listbox(self.ui)
         self.studentData = Label(self.ui, text="No student selected")

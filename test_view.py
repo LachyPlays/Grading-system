@@ -1,10 +1,14 @@
 from curses.ascii import isdigit
 from operator import contains
+from select import select
 from tkinter import *
 from tkinter import ttk
 from turtle import right
 from database import student
 from tkinter import simpledialog
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 class test_gui():
     def __init__(self, student: student):
@@ -67,6 +71,41 @@ class test_gui():
         self.updatedStudent = self.student
         self.ui.destroy()
         self.ui.quit()
+    
+    def removeTest(self):
+        select_item = self.gradeTable.focus()
+        details = self.gradeTable.item(select_item)
+        test_index = details["values"][0]
+        del self.student.results[str(test_index)]
+
+        new_dict = dict()
+        index = int(0)
+
+        for (key, value) in self.student.results.items():
+            new_dict[str(index)] = value
+            index = index + 1
+
+        self.student.results = new_dict
+
+        self.update_table()
+
+
+    def plot(self):
+        keys = list()
+        vals = list()
+
+        for (key, value) in self.student.results.items():
+            keys.append(int(key))
+            vals.append(int(float(value) * 100.0))
+    
+        print(f"x values are {keys}")
+        print(f"y values are {vals}")
+
+        xpoints = np.array(keys)
+        ypoints = np.array(vals)
+
+        plt.plot(xpoints, ypoints)
+        plt.show()
 
     def open_window(self):
         self.ui.geometry("400x300")
@@ -82,10 +121,14 @@ class test_gui():
 
         self.addTestBtn = Button(self.ui, text="Add a test", command=self.addTest)
         self.applyBtn = Button(self.ui, text="Apply changes", command=self.applyChanges)
+        self.plotBtn = Button(self.ui, text="Plot tests", command=self.plot)
+        self.removeTestBtn = Button(self.ui, text="Remove test", command=self.removeTest)
 
         self.update_table()
-
+        
         self.gradeTable.pack(side=LEFT, anchor=NW)
         self.addTestBtn.pack(side=RIGHT, anchor=NE)
+        self.removeTestBtn.pack(side=RIGHT, anchor=NE)
         self.applyBtn.pack(side=BOTTOM, anchor=SE)
+        self.plotBtn.pack(side=RIGHT, anchor=NE)
         self.ui.mainloop()
