@@ -130,5 +130,5 @@ class test_gui():
         self.addTestBtn.pack(side=RIGHT, anchor=NE)
         self.removeTestBtn.pack(side=RIGHT, anchor=NE)
         self.applyBtn.pack(side=BOTTOM, anchor=SE)
-        self.plotBtn.pack(side=RIGHT, anchor=NE)
+        self.plotBtn.pack()
         self.ui.mainloop()
